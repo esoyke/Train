@@ -1,0 +1,38 @@
+
+<div class="row">
+    <h3>Leaderboard</h3>
+</div>
+</row>
+    <div class="row main">
+        <div class="row-height">
+            <div class="col-xl-4 col-height col-middle">
+                <div class="inside">
+                    <div class="content">
+                        <h3>TODO- Display scroll of honorable mentions</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-7 col-height col-middle">
+                <div class="inside">
+                    <div class="content col-middle">
+                        <h3>Terrific Top Ten</h3>
+                        <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+                            <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
+                                <img ng-src="{{slide.image}}" style="margin:auto;">
+                                <div class="carousel-caption">
+                                    <h4>Slide {{slide.id}}</h4>
+                                    <p>{{slide.text}}</p>
+                                </div>
+                            </uib-slide>
+                        </uib-carousel>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Probably shouldn't include footer here in a view but as it's a SPA with no nav...-->
+    <footer>
+        <h3>TODO- Display summary stuff</h3>
+    </footer>
