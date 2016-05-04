@@ -34,3 +34,6 @@ angular
         redirectTo: '/'
       });
   });
+
+// kick off the data polling
+angular.module('trainApp').run(function(LeadersService) {});

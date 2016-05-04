@@ -8,13 +8,40 @@
  * Controller of the trainApp
  */
 angular.module('trainApp')
-  .controller('LeaderboardCtrl', function ($scope) {
+  .controller('LeaderboardCtrl', ['$scope',  'LeadersService', function ($scope, LeadersService) {
 
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+
+      //var POLL_INTERVAL = 5000;
+        $scope.leaders = LeadersService.data;
+
+        //LeadersService.getLeaders().then(function (data) {
+        //    $scope.leaders = data.results;
+        //    console.log($scope.leaders.length);
+        //});
+
+        //var poll = function() {
+        //  $timeout(function() {
+        //    LeadersService.getLeaders().then(function (data) {
+        //      $scope.leaders = data.results;
+        //      console.log($scope.leaders.length);
+        //    });
+        //    poll();
+        //  }, POLL_INTERVAL);
+        //};
+        //poll();
+
+      //(function tick() {
+      //  $scope.leaders = LeadersService.query(function(){
+      //    $timeout(tick, 1000);
+      //  });
+      //})();
+
+
 
         $scope.myInterval = 5000;
         $scope.noWrapSlides = false;
@@ -72,4 +99,5 @@ angular.module('trainApp')
             return array;
         }
 
-  });
+    }
+]);
