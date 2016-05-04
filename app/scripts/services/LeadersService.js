@@ -15,7 +15,6 @@ angular.module('trainApp')
     $http.get('https://apis.trainheroic.com/public/leaderboard/468425').then(function(r) {
       leaderData.meta = r.data;
       leaderData.users = r.data.results;
-      data.calls++;
       $timeout(poller, POLLING_INTERVAL);
     });
 
@@ -23,7 +22,7 @@ angular.module('trainApp')
   poller();
 
   return {
-    data: data
+    data: leaderData
   };
 });
 
