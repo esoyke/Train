@@ -8,7 +8,7 @@
  * Controller of the trainApp
  */
 angular.module('trainApp')
-  .controller('LeaderboardCtrl', ['$scope',  'LeadersService', function ($scope, LeadersService) {
+  .controller('LeaderboardCtrl', ['$scope', 'LeadersService', function ($scope, LeadersService) {
 
     this.awesomeThings = [
       'HTML5 Boilerplate',
@@ -16,88 +16,46 @@ angular.module('trainApp')
       'Karma'
     ];
 
-      //var POLL_INTERVAL = 5000;
         $scope.leaders = LeadersService.data;
-
-        //LeadersService.getLeaders().then(function (data) {
-        //    $scope.leaders = data.results;
-        //    console.log($scope.leaders.length);
-        //});
-
-        //var poll = function() {
-        //  $timeout(function() {
-        //    LeadersService.getLeaders().then(function (data) {
-        //      $scope.leaders = data.results;
-        //      console.log($scope.leaders.length);
-        //    });
-        //    poll();
-        //  }, POLL_INTERVAL);
-        //};
-        //poll();
-
-      //(function tick() {
-      //  $scope.leaders = LeadersService.query(function(){
-      //    $timeout(tick, 1000);
-      //  });
-      //})();
-
-
+        $scope.topten = _.first(LeadersService.data.users, 10);
+        //$scope.topten = _.first($scope.leaders.users, 10);
 
         $scope.myInterval = 5000;
         $scope.noWrapSlides = false;
-        $scope.active = 0;
-        var slides = $scope.slides = [];
-        var currIndex = 0;
+        //$scope.active = 0;
+        $scope.slidesTopTen = [];
+        $scope.slidesAllUsers = [];
 
-        $scope.addSlide = function() {
-            var newWidth = 600 + slides.length + 1;
-            slides.push({
-                image: 'http://lorempixel.com/' + newWidth + '/300',
-                text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
-                id: currIndex++
-            });
+      var currIndex = 0;
+
+        // top 10 folks
+        $scope.addslidesTopTen = function() {
+          $scope.slidesTopTen = [];
+          _.each($scope.topten, function(user) {
+            $scope.slidesTopTen.push({
+              image: user.profileImg,
+              text: user.userFirstName + ' ' + user.userLastInitial,
+              rank: user.rank, //TODO how to denote a tie? There seem to be many in the data
+              id: currIndex++
+            })
+          });
         };
 
-        $scope.randomize = function() {
-            var indexes = generateIndexesArray();
-            assignNewIndexesToSlides(indexes);
+        // everybody
+        $scope.addslidesAllUsers = function() {
+          $scope.slidesAllUsers = [];
+          _.each($scope.topten, function(user) {
+            $scope.slidesAllUsers.push({
+              image: user.profileImg,
+              text: user.userFirstName + ' ' + user.userLastInitial,
+              rank: user.rank, //TDO how to denote a tie?
+              id: currIndex++
+            })
+          });
         };
 
-        for (var i = 0; i < 4; i++) {
-            $scope.addSlide();
-        }
-
-        // Randomize logic below
-
-        function assignNewIndexesToSlides(indexes) {
-            for (var i = 0, l = slides.length; i < l; i++) {
-                slides[i].id = indexes.pop();
-            }
-        }
-
-        function generateIndexesArray() {
-            var indexes = [];
-            for (var i = 0; i < currIndex; ++i) {
-                indexes[i] = i;
-            }
-            return shuffle(indexes);
-        }
-
-        // http://stackoverflow.com/questions/962802#962890
-        function shuffle(array) {
-            var tmp, current, top = array.length;
-
-            if (top) {
-                while (--top) {
-                    current = Math.floor(Math.random() * (top + 1));
-                    tmp = array[current];
-                    array[current] = array[top];
-                    array[top] = tmp;
-                }
-            }
-
-            return array;
-        }
+        $scope.addslidesTopTen();
+        $scope.addslidesAllUsers();
 
     }
 ]);
