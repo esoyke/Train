@@ -10,20 +10,19 @@
 angular.module('trainApp')
   .controller('LeaderboardCtrl', ['$scope', '$rootScope', '$interval', '$timeout', 'LeadersService', function ($scope, $rootScope, $interval, $timeout, LeadersService) {
 
-      var SHOW_NUMBER_OF_USERS = 9;
+      var SHOW_NUMBER_OF_USERS = 5;
 
-      $scope.leaders = LeadersService.data;
+      $scope.leaderData = LeadersService.data;
       $scope.topten = _.first(LeadersService.data.users, 10);
 
       $scope.myInterval = 5000;
       $scope.noWrapSlides = false;
-      //$scope.active = 0;
       $scope.slidesTopTen = [];
       $rootScope.slidesAllUsers = [];
 
-      var currIndex = 0;
+      var currIndex = 0; //maintain id uniqueness
 
-      // Return the rank as proper grammar, please. Ms Garlick would be pleased.
+      // Return the rank as proper grammar, please. Ms DePalma would be pleased.
       var getRank = function(rank){
         var data = ''+rank;
         if(data=='12')
@@ -48,6 +47,7 @@ angular.module('trainApp')
             image: user.profileImg,
             text: user.userFirstName + ' ' + user.userLastInitial,
             rank: getRank(user.rank), //TODO how to denote a tie? There seem to be many in the data
+            tests: user.tests[0],
             id: currIndex++
           })
         });
@@ -61,15 +61,16 @@ angular.module('trainApp')
       // as anytime I find myself using rootScope I figure I'm doing something wrong...
       $rootScope.addPerson = function() {
         console.log('addPerson '+$rootScope.userId);
-        if($rootScope.userId==$scope.leaders.users.length){
+        if($rootScope.userId==$scope.leaderData.users.length){
           console.log('hit the end of the list, TODO- should reload here and reset counter');
           $rootScope.userId = 0;
         }
-        var user = $scope.leaders.users[$rootScope.userId];
+        var user = $scope.leaderData.users[$rootScope.userId];
         $rootScope.slidesAllUsers.push({
           image: user.profileImg,
           text: user.userFirstName + ' ' + user.userLastInitial,
           rank: getRank(user.rank), //TODO how to denote a tie? There seem to be many in the data
+          tests: user.tests[0],
           id: currIndex++
         });
         $rootScope.userId++;
@@ -100,9 +101,12 @@ angular.module('trainApp')
           // populate the top ten slideshow
           $scope.addslidesTopTen();
 
-          for (var i = 0; i < SHOW_NUMBER_OF_USERS; i++) {
+          //for (var i = 0; i < SHOW_NUMBER_OF_USERS; i++) {
+          //  $rootScope.addPerson();
+          //};
+          _.each(SHOW_NUMBER_OF_USERS, function() {
             $rootScope.addPerson();
-          };
+          });
         }, 3000);
 
       })();

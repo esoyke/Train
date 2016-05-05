@@ -1,13 +1,15 @@
     <div class='navbar'>
-        <h3>{{leaders.meta.workoutTitle}} Leaderboard</h3>
+        <h2>{{leaderData.workoutTitle}} Leaderboard</h2>
     </div>
     <div class="row main">
+        <h4 class='instructions'>{{leaderData.instructions}}</h4>
+
         <div class="row-height">
 
             <div class="col-xl-4 col-height col-middle">
                 <div class="inside">
                     <div class="content">
-                        <!--<h3>All </h3>-->
+                        <h3>{{leaderData.users.length}} Champions in the Making</h3>
                         <div class="scroller" id="scrollingDiv">
                             <div id="usersContainer">
                                 <div ng-repeat="slide in slidesAllUsers track by slide.id" index="slide.id">
@@ -15,7 +17,7 @@
                                     <table class="usersTable">
                                         <tr>
                                             <td width="100" valign="bottom"><img ng-src="{{slide.image}}" class='allUsers clip-circle'></td>
-                                            <td><h4>{{slide.text}} ({{slide.rank}})</h4></td>
+                                            <td><h3>{{slide.text}} ({{slide.rank}})</h3><h4>{{slide.tests}}</h4></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -24,6 +26,8 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Top Ten slide carousel -->
 
             <div class="col-xl-7 col-height col-middle">
                 <div class="inside">
@@ -43,9 +47,24 @@
                 </div>
             </div>
 
+            <!-- Podium
+            <div class="col-xl-7 col-height col-middle">
+                <div class="inside">
+                    <div class="content col-middle">
+                        <h3>The Podium</h3>
+                        <div class="col-xl-6">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            -->
+
+
+
         </div>
     </div>
     <!-- Normally would include nav & footer in index rather than this view but as it's a SPA with no real nav or other pages...-->
-    <footer>
-        <h3>Total participants: {{leaders.users.length}}</h3>
-    </footer>
+    <!--<footer>-->
+        <!--<h3>Total participants: {{leaderData.users.length}}</h3>-->
+    <!--</footer>-->
