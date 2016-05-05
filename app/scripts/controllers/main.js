@@ -15,7 +15,6 @@ angular.module('trainApp')
 
       $scope.leaders = LeadersService.data;
       $scope.topten = _.first(LeadersService.data.users, 10);
-      //$scope.topten = _.first($scope.leaders.users, 10);
 
       $scope.myInterval = 5000;
       $scope.noWrapSlides = false;
@@ -55,27 +54,14 @@ angular.module('trainApp')
         });
       };
 
-      // everybody
-      //$scope.addslidesAllUsers = function() {
-      //  $rootScope.slidesAllUsers = [];
-      //  _.each($scope.leaders.users, function(user) {
-      //    $rootScope.slidesAllUsers.push({
-      //      text: user.userFirstName + ' ' + user.userLastInitial,
-      //      rank: getRank(user.rank), //TODO how to denote a tie? There seem to be many in the data
-      //      id: currIndex++
-      //    })
-      //  });
-      //};
-
       // counter to maintain where we are in the list of users as we scroll through
       $rootScope.userId = 0;
-
 
       // blah, the need for rootScope to call from within the interval function is
       // probably due to a scoping mistake on my part. Might fix with a closure later to make it less hackish
       // as anytime I find myself using rootScope I figure I'm doing something wrong...
       $rootScope.addPerson = function() {
-        console.log('addPerson '+$rootScope.userId);
+        //console.log('addPerson '+$rootScope.userId);
         if($rootScope.userId==$rootScope.slidesAllUsers.length){
           console.log('hit the end of the list, TODO- should reload here and reset counter');
         }
@@ -91,7 +77,6 @@ angular.module('trainApp')
 
       // same goes here
       $rootScope.personRemove = function(index) {
-        console.log('personRemove '+index);
         $rootScope.slidesAllUsers.splice(index, 1);
       };
 
@@ -99,7 +84,6 @@ angular.module('trainApp')
       $scope.scrollList = function($scope) {
         var stop = $interval(function($scope) {
           $rootScope.addPerson();
-          console.log($rootScope.slidesAllUsers);
           if($rootScope.slidesAllUsers.length>SHOW_NUMBER_OF_USERS)
             $rootScope.personRemove();
         }, ALL_USERS_SCROLL_RATE);
@@ -108,7 +92,6 @@ angular.module('trainApp')
 
       // populate the top ten slideshow
       $scope.addslidesTopTen();
-      //$scope.addslidesAllUsers();
 
       //prime the user list quickly
       (function () {
