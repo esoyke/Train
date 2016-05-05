@@ -5,10 +5,18 @@
 </row>
     <div class="row main">
         <div class="row-height">
+
             <div class="col-xl-4 col-height col-middle">
                 <div class="inside">
                     <div class="content">
-                        <h3>TODO- Scroll everybody</h3>
+                        <!--<h3>All </h3>-->
+                        <div class="scroller" id="scrollingDiv">
+                            <div id="usersContainer">
+                                <div ng-repeat="slide in slidesAllUsers track by slide.id" index="slide.id">
+                                    <img ng-src="{{slide.image}}" class='allUsers' >{{slide.text}} #{{slide.rank}}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -35,5 +43,5 @@
     </div>
     <!-- Normally would include the footer in index rather than this view but as it's a SPA with no nav or other pages...-->
     <footer>
-        <h3>Summary: Number of participants: {{leaders.users.length}}</h3>
+        <h3>Total participants: {{leaders.users.length}}</h3>
     </footer>

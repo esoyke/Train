@@ -72,6 +72,19 @@ h1 {
     /*/!*background: #d6ec94;*!/*/
 /*}*/
 
+/* used for the side scroller of all users*/
+.scroller{
+    width: 100%;
+    height: 700px;
+    overflow: auto;
+}
+.allUsers {
+    max-height:75px;
+    min-height:75px;
+    width: 75px;
+    margin:auto;
+}
+
 /* centering of columns */
 html,
 body {

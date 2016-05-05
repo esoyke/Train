@@ -17,9 +17,9 @@ describe('Controller: LeaderboardCtrl', function () {
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(LeaderboardCtrl.awesomeThings.length).toBe(3);
-  });
+  //it('should attach a list of awesomeThings to the scope', function () {
+  //  expect(LeaderboardCtrl.awesomeThings.length).toBe(3);
+  //});
 
   it('should get leaders from service', function () {
     expect(LeaderboardCtrl.leaders.length).not.toBeNull();

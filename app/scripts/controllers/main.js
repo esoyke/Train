@@ -8,54 +8,97 @@
  * Controller of the trainApp
  */
 angular.module('trainApp')
-  .controller('LeaderboardCtrl', ['$scope', 'LeadersService', function ($scope, LeadersService) {
+  .controller('LeaderboardCtrl', ['$scope', '$rootScope', '$interval', 'LeadersService', function ($scope, $rootScope, $interval, LeadersService) {
 
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+      var SHOW_NUMBER_OF_USERS = 9;
 
-        $scope.leaders = LeadersService.data;
-        $scope.topten = _.first(LeadersService.data.users, 10);
-        //$scope.topten = _.first($scope.leaders.users, 10);
+      $scope.leaders = LeadersService.data;
+      $scope.topten = _.first(LeadersService.data.users, 10);
+      //$scope.topten = _.first($scope.leaders.users, 10);
 
-        $scope.myInterval = 5000;
-        $scope.noWrapSlides = false;
-        //$scope.active = 0;
-        $scope.slidesTopTen = [];
-        $scope.slidesAllUsers = [];
+      $scope.myInterval = 5000;
+      $scope.noWrapSlides = false;
+      //$scope.active = 0;
+      $scope.slidesTopTen = [];
+      $rootScope.slidesAllUsers = [];
 
       var currIndex = 0;
 
-        // top 10 folks
-        $scope.addslidesTopTen = function() {
-          $scope.slidesTopTen = [];
-          _.each($scope.topten, function(user) {
-            $scope.slidesTopTen.push({
-              image: user.profileImg,
-              text: user.userFirstName + ' ' + user.userLastInitial,
-              rank: user.rank, //TODO how to denote a tie? There seem to be many in the data
-              id: currIndex++
-            })
-          });
-        };
+      // top 10 folks
+      $scope.addslidesTopTen = function() {
+        $scope.slidesTopTen = [];
+        _.each($scope.topten, function(user) {
+          $scope.slidesTopTen.push({
+            image: user.profileImg,
+            text: user.userFirstName + ' ' + user.userLastInitial,
+            rank: user.rank, //TODO how to denote a tie? There seem to be many in the data
+            id: currIndex++
+          })
+        });
+      };
 
-        // everybody
-        $scope.addslidesAllUsers = function() {
-          $scope.slidesAllUsers = [];
-          _.each($scope.topten, function(user) {
-            $scope.slidesAllUsers.push({
-              image: user.profileImg,
-              text: user.userFirstName + ' ' + user.userLastInitial,
-              rank: user.rank, //TDO how to denote a tie?
-              id: currIndex++
-            })
-          });
-        };
+      // everybody
+      $scope.addslidesAllUsers = function() {
+        $rootScope.slidesAllUsers = [];
+        _.each($scope.leaders.users, function(user) {
+          $rootScope.slidesAllUsers.push({
+            text: user.userFirstName + ' ' + user.userLastInitial,
+            rank: user.rank, //TODO how to denote a tie? There seem to be many in the data
+            id: currIndex++
+          })
+        });
+      };
 
-        $scope.addslidesTopTen();
-        $scope.addslidesAllUsers();
+
+      // counter to maintain where we are in the list of users as we scroll through
+      $rootScope.userId = 0;
+
+
+      // blah, the need for rootScope to call from within the interval function is
+      // probably due to a scoping mistake on my part. Might fix with a closure later to make it less hackish
+      // as anytime I find myself using rootScope I figure I'm doing something wrong...
+      $rootScope.addPerson = function() {
+        console.log('addPerson '+$rootScope.userId);
+        if($rootScope.userId==$rootScope.slidesAllUsers.length){
+          console.log('hit the end of the list, TODO- should reload here and reset counter');
+        }
+        $rootScope.userId++;
+        var user = $scope.leaders.users[$rootScope.userId];
+        $rootScope.slidesAllUsers.push({
+          image: user.profileImg,
+          text: user.userFirstName + ' ' + user.userLastInitial,
+          rank: user.rank, //TODO how to denote a tie? There seem to be many in the data
+          id: currIndex++
+        })
+      };
+
+      // same goes here
+      $rootScope.personRemove = function(index) {
+        console.log('personRemove '+index);
+        $rootScope.slidesAllUsers.splice(index, 1);
+      };
+
+      // add and remove a user from the visible 'stack'
+      $scope.scrollList = function($scope) {
+        var stop = $interval(function($scope) {
+          $rootScope.addPerson();
+          console.log($rootScope.slidesAllUsers);
+          if($rootScope.slidesAllUsers.length>SHOW_NUMBER_OF_USERS)
+            $rootScope.personRemove();
+        }, 3000);
+      };
+      $scope.scrollList();
+
+      // populate the top ten slideshow
+      $scope.addslidesTopTen();
+      //$scope.addslidesAllUsers();
+
+      //prime the user list quickly
+      (function () {
+        for (var i = 0; i < SHOW_NUMBER_OF_USERS; i++) {
+          $rootScope.addPerson();
+        };
+      })();
 
     }
 ]);
