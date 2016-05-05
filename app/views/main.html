@@ -1,26 +1,23 @@
     <div class='navbar'>
         <h2>{{leaderData.workoutTitle}} - Leaderboard</h2>
     </div>
-    <div class="row main">
-        <h4 class='instructions'>{{leaderData.instructions}}</h4>
+    <div class="row container main">
 
         <div class="row-height">
-
             <div class="col-lg-4 col-xl-4 col-height col-middle">
                 <div class="inside">
                     <div class="content">
-                        <h3>{{leaderData.users.length}} Champions in the Making</h3>
-                        <div class="scroller" id="scrollingDiv">
-                            <div id="usersContainer">
-                                <div ng-repeat="slide in slidesAllUsers track by slide.id" index="slide.id">
-                                    <!--<div><img ng-src="{{slide.image}}" class='allUsers clip-circle' ><h5>{{slide.text}} ({{slide.rank}})</h5></div>-->
-                                    <table class="usersTable">
-                                        <tr>
-                                            <td width="100" valign="bottom"><img ng-src="{{slide.image}}" class='allUsers clipCircle'></td>
-                                            <td><h3>{{slide.text}} ({{slide.rank}})</h3><h4>{{slide.tests}}</h4></td>
-                                        </tr>
-                                    </table>
-                                </div>
+                        <div class="divTitle">
+                            <h3>{{leaderData.users.length}} Champions in the Making</h3>
+                        </div>
+                        <div class="scrollerContainer" >
+                            <div ng-repeat="slide in slidesAllUsers track by slide.id" index="slide.id">
+                                <table class="usersTable">
+                                    <tr>
+                                        <td width="100" valign="bottom"><img ng-src="{{slide.image}}" class='allUsers clipCircle'></td>
+                                        <td><h3>{{slide.text}} ({{slide.rank}})</h3><h4>{{slide.tests}}</h4></td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -31,7 +28,10 @@
             <div class='col-lg-7 col-xl-7 col-height col-middle podium' >
                 <div class="inside">
                     <div class="content col-middle">
-                        <div class="col-xl-6">
+                        <div class="divTitle">
+                            <h3>Leaders Podium</h3>
+                        </div>
+                        <div class="col-xl-6 podiumContainer">
                             <!-- Absolute position 1st, 2nd, 3rd images and texts -->
                             <img ng-src="{{slidesTopTen[0].image}}" class='clipCircle leaderImage user1Image'>
                             <img ng-src="{{slidesTopTen[1].image}}" class='clipCircle leaderImage user2Image'>
@@ -40,48 +40,28 @@
                             <div class='leaderText user2Text'><h3>{{slidesTopTen[1].text}} ({{slidesTopTen[1].rank}})</h3><h4>{{slidesTopTen[1].tests}}</h4></div>​
                             <div class='leaderText user3Text'><h3>{{slidesTopTen[2].text}} ({{slidesTopTen[2].rank}})</h3><h4>{{slidesTopTen[2].tests}}</h4></div>​
 
-                            <svg height="260" width="760">
-                                <line x1="3" y1="250" x2="3" y2="100" style="stroke:rgb(0,0,0);stroke-width:4" />
-                                <line x1="3" y1="100" x2="250" y2="100" style="stroke:rgb(0,0,0);stroke-width:4" />
-                                <line x1="250" y1="100" x2="250" y2="25" style="stroke:rgb(0,0,0);stroke-width:4" />
-                                <line x1="250" y1="25" x2="500" y2="25" style="stroke:rgb(0,0,0);stroke-width:4" />
-                                <line x1="500" y1="25" x2="500" y2="150" style="stroke:rgb(0,0,0);stroke-width:4" />
-                                <line x1="500" y1="150" x2="750" y2="150" style="stroke:rgb(0,0,0);stroke-width:4" />
-                                <line x1="750" y1="150" x2="750" y2="250" style="stroke:rgb(0,0,0);stroke-width:4" />
-                                <line x1="750" y1="250" x2="3" y2="250" style="stroke:rgb(0,0,0);stroke-width:4" />
-                                Sorry, your browser does not support inline SVG.
-                            </svg>
-                            <!--<h3>The Podium</h3>-->
+                            <div style="position: absolute;">
+                                <svg class='svgPodium'>
+                                    <line x1="33" y1="450" x2="33" y2="300" style="stroke:rgb(0,0,0);stroke-width:4" />
+                                    <line x1="33" y1="300" x2="280" y2="300" style="stroke:rgb(0,0,0);stroke-width:4" />
+                                    <line x1="280" y1="300" x2="280" y2="225" style="stroke:rgb(0,0,0);stroke-width:4" />
+                                    <line x1="280" y1="225" x2="530" y2="225" style="stroke:rgb(0,0,0);stroke-width:4" />
+                                    <line x1="530" y1="225" x2="530" y2="350" style="stroke:rgb(0,0,0);stroke-width:4" />
+                                    <line x1="530" y1="350" x2="780" y2="350" style="stroke:rgb(0,0,0);stroke-width:4" />
+                                    <line x1="780" y1="350" x2="780" y2="450" style="stroke:rgb(0,0,0);stroke-width:4" />
+                                    <line x1="780" y1="450" x2="33" y2="450" style="stroke:rgb(0,0,0);stroke-width:4" />
+                                    Sorry, your browser does not support inline SVG.
+                                </svg>
+                            </div>
                         </div>
+                    </div>
+                    <div class="content col-middle summaryContainer">
+                        <h4 class='instructions'>{{leaderData.instructions}}</h4>
+                        <div class='textCenter'><img class='logo' src="favicon.ico"></div>
+                        <h4 class='instructions'>That's a total of <b>{{leaderData.totalReps}}</b> reps people. Keep it up!</h4>
                     </div>
                 </div>
             </div>
-
-
-            <!-- Top Ten slide carousel
-
-            <div class="col-xl-7 col-height col-middle">
-                <div class="inside">
-                    <div class="content col-middle">
-                        <h3>Top Ten</h3>
-                        <div class="col-xl-6">
-                            <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-                                <uib-slide ng-repeat="slide in slidesTopTen track by slide.id" index="slide.id">
-                                    <img ng-src="{{slide.image}}" class='clip-circle' style="max-height:300px; min-height:300px; margin:auto;">
-                                    <div class="carousel-caption">
-                                        <h4>{{slide.text}} ({{slide.rank}})</h4>
-                                    </div>
-                                </uib-slide>
-                            </uib-carousel>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            -->
 
         </div>
     </div>
-    <!-- Normally would include nav & footer in index rather than this view but as it's a SPA with no real nav or other pages...-->
-    <!--<footer>-->
-        <!--<h3>Total participants: {{leaderData.users.length}}</h3>-->
-    <!--</footer>-->

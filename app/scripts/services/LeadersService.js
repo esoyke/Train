@@ -17,6 +17,25 @@ angular.module('trainApp')
       console.log('polling mock data..');
       URL_Leaders = 'mock.json';
     }
+    var REPS_PER_ROUND = 20;
+
+      /**
+       * calculates total reps for all users based on numeric value of tests node * the workout description of 20 reps
+       * Ex. a user had a tests value of ["6 (RX)"] -> 6 * 20 = 120
+        * @param data
+       */
+    var totalReps = function(data){
+      var total = 0;
+      _.each(data, function(user){
+        var userTest = user.tests[0];
+        var rounds = userTest.substr(0,userTest.indexOf(' '));
+        console.log('rounds: '+rounds);
+        total += (rounds*REPS_PER_ROUND);
+      })
+        console.log('total: '+total);
+        return total;
+    }
+
     // function polls for fresh data every X seconds
     var poller = function() {
         $http.get(URL_Leaders).then(function (r) {
@@ -24,7 +43,9 @@ angular.module('trainApp')
           leaderData.workoutTitle = r.data.workoutTitle;
           leaderData.instructions = r.data.tests[0].testInstructions;
           leaderData.users = r.data.results;
-          console.log('retrieved '+leaderData.users.length+' users')
+          console.log('retrieved '+leaderData.users.length+' users');
+          //TODO calc this:
+          leaderData.totalReps = totalReps(r.data.results);
           // Poll again for new data once your scrolling list should be reaching its end
           // OR try again in the default if there was nothing found.
           // Seems slightly cheesy to me but I've been coding all freaking day at this point and am seeing stars.
