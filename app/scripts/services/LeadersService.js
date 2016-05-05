@@ -8,35 +8,33 @@ angular.module('trainApp')
     .factory('LeadersService', function($http, $timeout) {
 
     var leaderData = { meta: {}, users: 0 };
-    var POLLING_INTERVAL = 10000; // 10 seconds seems more than often enough to update this leaderboard
+    var ALL_USERS_SCROLL_RATE = 400; //ms
+    var POLLING_DEFAULT = 3000; // default polling rate will be used if nothing was found
     var URL_Leaders = 'https://apis.trainheroic.com/public/leaderboard/468425';
     var MOCK = true;
-
+    //TODO contruct a proper test dammit
+    if(MOCK){
+      console.log('polling mock data..');
+      URL_Leaders = 'mock.json';
+    }
     // function polls for fresh data every X seconds
     var poller = function() {
-      //I'm going to be away from the Internet for a while, copy the JSON for initial testing
-      //TODO contruct a proper test incorporating this so we aren't dependent on the actual service later
-      if(MOCK){
-        console.log('polling mock data..');
-        $http.get('mock.json').then(function (r) {
-          leaderData.meta = r.data;
-          leaderData.users = r.data.results;
-          $timeout(poller, POLLING_INTERVAL);
-        });
-      }
-      else {
-        console.log('polling the leaderboard service..');
         $http.get(URL_Leaders).then(function (r) {
           leaderData.meta = r.data;
           leaderData.users = r.data.results;
-          $timeout(poller, POLLING_INTERVAL);
-        })
-      }
-  };
-  poller();
+          console.log('retrieved '+leaderData.users.length+' users')
+          // Poll again for new data once your scrolling list should be reaching its end
+          // OR try again in the default if there was nothing found.
+          // Seems slightly cheesy to me but I've been coding all freaking day at this point and am seeing stars.
+          var POLLING_INTERVAL = leaderData.users.length*ALL_USERS_SCROLL_RATE;
+          $timeout(poller, POLLING_INTERVAL || POLLING_DEFAULT);
+        });
+    };
+    poller();
 
   return {
-    data: leaderData
+    data: leaderData,
+    ALL_USERS_SCROLL_RATE: ALL_USERS_SCROLL_RATE
   };
 
 });
