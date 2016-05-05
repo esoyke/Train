@@ -72,17 +72,27 @@ h1 {
     /*/!*background: #d6ec94;*!/*/
 /*}*/
 
-/* used for the side scroller of all users*/
+
+/* side scroller of all users*/
 .scroller{
     width: 100%;
     height: 700px;
     overflow: auto;
 }
 .allUsers {
-    max-height:75px;
-    min-height:75px;
-    width: 75px;
+    max-height:130px;
+    min-height:130px;
+    width: 130px;
     margin:auto;
+}
+.usersTable td{
+    padding: 10px;
+}
+
+/* circle images */
+.clip-circle {
+    clip-path: circle(50% at 50% 50%);
+    -webkit-clip-path: circle(50% at 50% 50%);
 }
 
 /* centering of columns */
@@ -101,6 +111,7 @@ body {
 h3 {
     text-align: center;
 }
+
 
 
 /* Hide some of the slide carousel's controls */

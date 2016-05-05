@@ -8,7 +8,7 @@ angular.module('trainApp')
     .factory('LeadersService', function($http, $timeout) {
 
     var leaderData = { meta: {}, users: 0 };
-    var ALL_USERS_SCROLL_RATE = 400; //ms
+    var ALL_USERS_SCROLL_RATE = 1500; //ms
     var POLLING_DEFAULT = 3000; // default polling rate will be used if nothing was found
     var URL_Leaders = 'https://apis.trainheroic.com/public/leaderboard/468425';
     var MOCK = true;

@@ -96,6 +96,7 @@ angular.module('trainApp')
       (function () {
         $timeout(function(){
           console.log('go!');
+          //TODO top ten messed up now, actually it was never updating before
           // populate the top ten slideshow
           $scope.addslidesTopTen();
 
