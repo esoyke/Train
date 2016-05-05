@@ -119,9 +119,58 @@ body {
     padding: 7px;
 }
 
+/* Podium */
+div.podium {
+    position: relative;
+    /*width: 400px;*/
+    /*height: 200px;*/
+}
+
+.user1Image {
+    position: absolute;
+    top: 105px;
+    right: 420px;
+}
+.user2Image {
+    position: absolute;
+    top: 180px;
+    right: 675px;
+}
+.user3Image {
+    position: absolute;
+    top: 230px;
+    right: 175px;
+}
+.user1Text {
+    position: absolute;
+    top: 295px;
+    right: 50px;
+}
+.user2Text {
+    position: absolute;
+    top: 370px;
+    right: 295px;
+}
+.user3Text {
+    position: absolute;
+    top: 420px;
+    right: -195px;
+}
+.leaderImage {
+    max-height:180px;
+    min-height:180px;
+    margin:auto;
+}
+.leaderText {
+    position: absolute;
+    bottom: 15px;
+    text-align: center;
+    width: 100%;
+}
+
 /* Effects */
 /* circle images */
-.clip-circle {
+.clipCircle {
     clip-path: circle(50% at 50% 50%);
     -webkit-clip-path: circle(50% at 50% 50%);
 }

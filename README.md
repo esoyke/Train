@@ -11,9 +11,11 @@ Clone and get up and running:
 ## Stack
   * Angular (templated by Yeoman)
   * Bootstrap, naturally
+  * CSS, plain vanilla
   * Angular-ui, for the top-ten slide carousel
   * Underscore, for some array utils
   * Grunt, to serve it up
+  * SVG, for leader podium
 
 ## Polling and user display
 It is polling for new data once it reaches the time calculated it will reach the end of the user display. Displaying just
