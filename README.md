@@ -29,7 +29,7 @@ to speed up development:
   * Didn't test on anything but Chrome as there probably wouldn't be a need to support multiple browsers
   * Didn't specify any @media breaks or test on anything other than a large screen
   * Used absolute positioning for leader podium, both the images and SVG. Looks fine on my full screen but could get
-  screwy on a smaller screen
+  screwy fast on a smaller screen
 
 ## Issues
 Ran into a problem calling add/remove functions within the $interval when scrolling the users, and resorted to using

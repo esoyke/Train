@@ -107,9 +107,11 @@ body {
 /* Side scroller of all users*/
 .divTitle {
     background-color: #1f242a;
-    border-top-left-radius:2px;
-    border-top-right-radius:2px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
     padding-bottom: 8px;
+    margin-right: 27px;
+    margin-left: 27px;
 }
 .divTitle h3 {
     margin-bottom: 0px !important;
@@ -127,7 +129,6 @@ body {
     border-radius: 3px;
 }
 .allUsers {
-    /*130*/
     max-height:120px;
     min-height:120px;
     width: 120px;
@@ -138,12 +139,15 @@ body {
 }
 
 /* Podium */
+.podiumTitle {
+    margin-right: 55px;
+}
 .podiumContainer {
     background-color: white;
     position: relative;
     width: 840px;
     height: 500px;
-    border-radius: 2px;
+    border-radius: 3px;
     box-shadow: 5px 5px 12px #888888;
 }
 .svgPodium{
@@ -194,16 +198,19 @@ line {
     text-align: center;
     width: 100%;
 }
+
+/* Summary */
+.summaryContainer {
+    padding-top: 15px;
+    background-color: white;
+    border-radius: 3px;
+    box-shadow: 5px 5px 12px #888888;
+    margin-right: 27px;
+}
 .logo {
     width: 35px;
     height: 35px;
     padding: 3px;
-}
-.summaryContainer {
-    padding-top: 15px;
-    background-color: white;
-    border-radius: 2px;
-    box-shadow: 5px 5px 12px #888888;
 }
 
 /* Effects */
