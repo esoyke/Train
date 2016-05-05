@@ -11,6 +11,7 @@ angular.module('trainApp')
   .controller('LeaderboardCtrl', ['$scope', '$rootScope', '$interval', 'LeadersService', function ($scope, $rootScope, $interval, LeadersService) {
 
       var SHOW_NUMBER_OF_USERS = 9;
+      var ALL_USERS_SCROLL_RATE = 500; //ms
 
       $scope.leaders = LeadersService.data;
       $scope.topten = _.first(LeadersService.data.users, 10);
@@ -24,6 +25,23 @@ angular.module('trainApp')
 
       var currIndex = 0;
 
+      // Return the rank as proper grammar, please. Ms Garlick would be pleased.
+      var getRank = function(rank){
+        var data = ''+rank;
+        if(data=='12')
+          return '12th';
+        if(data=='13')
+          return '13th';
+        if(data.endsWith('1'))
+          return data+'st';
+        if(data.endsWith('2'))
+          return data+'nd';
+        if(data.endsWith('3'))
+          return data+'rd';
+        else
+          return data+'th';
+      };
+
       // top 10 folks
       $scope.addslidesTopTen = function() {
         $scope.slidesTopTen = [];
@@ -31,24 +49,23 @@ angular.module('trainApp')
           $scope.slidesTopTen.push({
             image: user.profileImg,
             text: user.userFirstName + ' ' + user.userLastInitial,
-            rank: user.rank, //TODO how to denote a tie? There seem to be many in the data
+            rank: getRank(user.rank), //TODO how to denote a tie? There seem to be many in the data
             id: currIndex++
           })
         });
       };
 
       // everybody
-      $scope.addslidesAllUsers = function() {
-        $rootScope.slidesAllUsers = [];
-        _.each($scope.leaders.users, function(user) {
-          $rootScope.slidesAllUsers.push({
-            text: user.userFirstName + ' ' + user.userLastInitial,
-            rank: user.rank, //TODO how to denote a tie? There seem to be many in the data
-            id: currIndex++
-          })
-        });
-      };
-
+      //$scope.addslidesAllUsers = function() {
+      //  $rootScope.slidesAllUsers = [];
+      //  _.each($scope.leaders.users, function(user) {
+      //    $rootScope.slidesAllUsers.push({
+      //      text: user.userFirstName + ' ' + user.userLastInitial,
+      //      rank: getRank(user.rank), //TODO how to denote a tie? There seem to be many in the data
+      //      id: currIndex++
+      //    })
+      //  });
+      //};
 
       // counter to maintain where we are in the list of users as we scroll through
       $rootScope.userId = 0;
@@ -62,14 +79,14 @@ angular.module('trainApp')
         if($rootScope.userId==$rootScope.slidesAllUsers.length){
           console.log('hit the end of the list, TODO- should reload here and reset counter');
         }
-        $rootScope.userId++;
         var user = $scope.leaders.users[$rootScope.userId];
         $rootScope.slidesAllUsers.push({
           image: user.profileImg,
           text: user.userFirstName + ' ' + user.userLastInitial,
-          rank: user.rank, //TODO how to denote a tie? There seem to be many in the data
+          rank: getRank(user.rank), //TODO how to denote a tie? There seem to be many in the data
           id: currIndex++
-        })
+        });
+        $rootScope.userId++;
       };
 
       // same goes here
@@ -85,7 +102,7 @@ angular.module('trainApp')
           console.log($rootScope.slidesAllUsers);
           if($rootScope.slidesAllUsers.length>SHOW_NUMBER_OF_USERS)
             $rootScope.personRemove();
-        }, 3000);
+        }, ALL_USERS_SCROLL_RATE);
       };
       $scope.scrollList();
 

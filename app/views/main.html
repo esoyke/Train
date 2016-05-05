@@ -13,7 +13,7 @@
                         <div class="scroller" id="scrollingDiv">
                             <div id="usersContainer">
                                 <div ng-repeat="slide in slidesAllUsers track by slide.id" index="slide.id">
-                                    <img ng-src="{{slide.image}}" class='allUsers' >{{slide.text}} #{{slide.rank}}
+                                    <img ng-src="{{slide.image}}" class='allUsers' >{{slide.text}} ({{slide.rank}})
                                 </div>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                                 <uib-slide ng-repeat="slide in slidesTopTen track by slide.id" index="slide.id">
                                     <img ng-src="{{slide.image}}" style="max-height:300px; min-height:300px; margin:auto;">
                                     <div class="carousel-caption">
-                                        <h4>{{slide.text}} #{{slide.rank}}</h4>
+                                        <h4>{{slide.text}} ({{slide.rank}})</h4>
                                     </div>
                                 </uib-slide>
                             </uib-carousel>
