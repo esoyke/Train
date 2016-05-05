@@ -5,6 +5,7 @@
     padding: 0.2em 0;
 }
 
+/* General sizing and positioning */
 .container {
     height: 100%;
     width: 100%;
@@ -15,17 +16,8 @@
 .inside {
     margin-top: 20px;
     margin-bottom: 20px;
-    /*background: #ededed;*/
-    /*background: -webkit-gradient(linear, left top, left bottom,color-stop(0%, #f4f4f4), color-stop(100%, #ededed));*/
-    /*background: -moz-linear-gradient(top, #f4f4f4 0%, #ededed 100%);*/
-    /*background: -ms-linear-gradient(top, #f4f4f4 0%, #ededed 100%);*/
 }
 .inside-full-height {
-    /*
-    // if you want to give content full height give him height: 100%;
-    // with content full height you can't apply margins to the content
-    // content full height does not work in ie http://stackoverflow.com/questions/27384433/ie-display-table-cell-child-ignores-height-100
-    */
     height: 100%;
     margin-top: 0;
     margin-bottom: 0;
@@ -34,8 +26,25 @@
     padding: 12px 3px;
 }
 
-/* columns of same height styles */
 
+/* centering of columns */
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+html {
+    display: table;
+}
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
+h3 {
+    text-align: center;
+}
+
+/* columns of same height styles */
 .row-height {
     display: table;
     table-layout: fixed;
@@ -67,11 +76,28 @@ h1 {
     line-height: 34px;
     text-align: center;
 }
-/*[class*="col-"] {*/
-    /*border: 1px solid #80aa00;*/
-    /*/!*background: #d6ec94;*!/*/
-/*}*/
 
+/* Colors */
+body {
+    background-color: #e9e9e9;
+}
+/* Fonts */
+body {
+    font-family: 'Open Sans', sans-serif;
+    text-transform: none;
+    font-weight: 200;
+}
+
+/* Divs */
+.navbar {
+    background-color: #1f242a;
+    min-height: 80px;
+    color: white;
+    border-radius: 0px;
+}
+.navbar h3 {
+    font-weight: 100;
+}
 
 /* side scroller of all users*/
 .scroller{
@@ -89,30 +115,12 @@ h1 {
     padding: 10px;
 }
 
+/* Effects */
 /* circle images */
 .clip-circle {
     clip-path: circle(50% at 50% 50%);
     -webkit-clip-path: circle(50% at 50% 50%);
 }
-
-/* centering of columns */
-html,
-body {
-    width: 100%;
-    height: 100%;
-}
-html {
-    display: table;
-}
-body {
-    display: table-cell;
-    vertical-align: middle;
-}
-h3 {
-    text-align: center;
-}
-
-
 
 /* Hide some of the slide carousel's controls */
 span.glyphicon.glyphicon-chevron-left {

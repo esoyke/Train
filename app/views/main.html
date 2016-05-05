@@ -1,5 +1,4 @@
-
-    <div class="row">
+    <div class='navbar'>
         <h3>{{leaders.meta.workoutTitle}} Leaderboard</h3>
     </div>
     <div class="row main">
@@ -16,7 +15,7 @@
                                     <table class="usersTable">
                                         <tr>
                                             <td width="100" valign="bottom"><img ng-src="{{slide.image}}" class='allUsers clip-circle'></td>
-                                            <td><h5>{{slide.text}} ({{slide.rank}})</h5></td>
+                                            <td><h4>{{slide.text}} ({{slide.rank}})</h4></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -46,7 +45,7 @@
 
         </div>
     </div>
-    <!-- Normally would include the footer in index rather than this view but as it's a SPA with no nav or other pages...-->
+    <!-- Normally would include nav & footer in index rather than this view but as it's a SPA with no real nav or other pages...-->
     <footer>
         <h3>Total participants: {{leaders.users.length}}</h3>
     </footer>
