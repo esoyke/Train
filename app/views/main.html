@@ -32,13 +32,13 @@
                             <h3>Leaders Podium</h3>
                         </div>
                         <div class="col-xl-6 podiumContainer">
-                            <!-- Absolute position 1st, 2nd, 3rd images and texts -->
-                            <img ng-src="{{slidesTopTen[0].image}}" class='clipCircle leaderImage user1Image'>
-                            <img ng-src="{{slidesTopTen[1].image}}" class='clipCircle leaderImage user2Image'>
-                            <img ng-src="{{slidesTopTen[2].image}}" class='clipCircle leaderImage user3Image'>
-                            <div class='leaderText user1Text'><h3>{{slidesTopTen[0].text}} ({{slidesTopTen[0].rank}})</h3><h4>{{slidesTopTen[0].tests}}</h4></div>​
-                            <div class='leaderText user2Text'><h3>{{slidesTopTen[1].text}} ({{slidesTopTen[1].rank}})</h3><h4>{{slidesTopTen[1].tests}}</h4></div>​
-                            <div class='leaderText user3Text'><h3>{{slidesTopTen[2].text}} ({{slidesTopTen[2].rank}})</h3><h4>{{slidesTopTen[2].tests}}</h4></div>​
+                            <!-- Absolute position 1st, 2nd, 3rd images and aligned texts -->
+                            <img ng-src="{{leaderData.users[0].image}}" class='clipCircle leaderImage user1Image'>
+                            <img ng-src="{{leaderData.users[1].image}}" class='clipCircle leaderImage user2Image'>
+                            <img ng-src="{{leaderData.users[2].image}}" class='clipCircle leaderImage user3Image'>
+                            <div class='leaderText user1Text'><h3>{{leaderData.users[0].text}} ({{leaderData.users[0].rank}})</h3><h4>{{leaderData.users[0].tests}}</h4></div>​
+                            <div class='leaderText user2Text'><h3>{{leaderData.users[1].text}} ({{leaderData.users[1].rank}})</h3><h4>{{leaderData.users[1].tests}}</h4></div>​
+                            <div class='leaderText user3Text'><h3>{{leaderData.users[2].text}} ({{leaderData.users[2].rank}})</h3><h4>{{leaderData.users[2].tests}}</h4></div>​
 
                             <div style="position: absolute;">
                                 <!-- TODO it would look slightly better if I used a polyline with rounded linejoins. Maybe if you hire me.. ;) -->
