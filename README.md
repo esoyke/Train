@@ -14,7 +14,7 @@ Clone and get up and running:
   * Angular (templated by Yeoman)
   * Bootstrap, naturally
   * CSS, plain vanilla
-  ~~* Angular-ui, for the top-ten slide carousel~~ Replaced with podium
+  * ~~Angular-ui, for the top-ten slide carousel~~ Replaced with podium
   * Underscore, for some array utils
   * Grunt, to serve it up
   * Karma/Jasmine, for my admittedly sparse tests
