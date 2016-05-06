@@ -10,6 +10,13 @@
 angular.module('trainApp')
   .controller('LeaderboardCtrl', ['$scope', '$rootScope', '$interval', '$timeout', 'LeadersService', function ($scope, $rootScope, $interval, $timeout, LeadersService) {
 
+      // just to test the controller available
+      this.testing = [
+        'One',
+        'Two',
+        'Three'
+      ];
+
       var SHOW_NUMBER_OF_USERS = 5;
 
       // data is refreshed in service for you automatically
@@ -18,7 +25,7 @@ angular.module('trainApp')
       $rootScope.slidesAllUsers = [];
 
       //maintain id uniqueness
-      var currIndex = 0;
+      //var currIndex = 0;
 
       // counter to maintain where we are in the list of users as we scroll through
       $rootScope.userId = 0;
@@ -59,7 +66,6 @@ angular.module('trainApp')
           });
           $scope.scrollList();
         }, 1000);
-
       })();
 
     }

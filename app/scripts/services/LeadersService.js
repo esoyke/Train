@@ -17,8 +17,12 @@ angular.module('trainApp')
       URL_LEADERS = 'mock.json';
     }
 
+    var url = function() {
+      return URL_LEADERS;
+    };
 
     var leaderData = {title: '', instructions: '', users: []};
+
       /**
        * calculates total reps for all users based on numeric value of tests node * the workout description of 20 reps
        * Ex. a user had a tests value of ["6 (RX)"] -> 6 * 20 = 120
@@ -38,18 +42,13 @@ angular.module('trainApp')
     // Return the rank as proper grammar, please. Ms DePalma would be pleased.
     var getRank = function(rank){
       var data = ''+rank;
-      if(data=='12')
-        return '12th';
-      if(data=='13')
-        return '13th';
-      if(data.endsWith('1'))
-        return data+'st';
-      if(data.endsWith('2'))
-        return data+'nd';
-      if(data.endsWith('3'))
-        return data+'rd';
-      else
-        return data+'th';
+      //console.log('evaluating: '+data);
+      if(data==='12') { return '12th'; }
+      if(data==='13') { return '13th'; }
+      if(data.endsWith('1')) { return data+'st'; }
+      if(data.endsWith('2')) { return data+'nd'; }
+      if(data.endsWith('3')) { return data+'rd'; }
+      else { return data+'th'; }
     };
 
     var currIndex = 0; //maintain id uniqueness
@@ -101,6 +100,7 @@ angular.module('trainApp')
         $timeout(poller, POLLING_INTERVAL);
       },
       function(err){
+        console.log(err);
         //try again in the default if there was nothing found from the endpoint.
         console.log('error retrieving data, retrying in '+POLLING_DEFAULT+'ms');
         $timeout(poller, POLLING_DEFAULT);
@@ -111,7 +111,8 @@ angular.module('trainApp')
   return {
     data: leaderData,
     ALL_USERS_SCROLL_RATE: ALL_USERS_SCROLL_RATE,
-    getRank: getRank
+    getRank: getRank,
+    url: url // just used to test
   };
 
 });

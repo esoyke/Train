@@ -123,7 +123,7 @@ module.exports = function (grunt) {
       options: {
         jshintrc: '.jshintrc',
         reporter: require('jshint-stylish'),
-        force: true
+        force: false
       },
       all: {
         src: [
