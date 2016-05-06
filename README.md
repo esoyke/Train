@@ -14,15 +14,15 @@ Clone and get up and running:
   * Angular (templated by Yeoman)
   * Bootstrap, naturally
   * CSS, plain vanilla
-  * Angular-ui, for the top-ten slide carousel
+  ~~* Angular-ui, for the top-ten slide carousel~~ Replaced with podium
   * Underscore, for some array utils
   * Grunt, to serve it up
-  * Karma/Jasmine, for my admittedly sparese tests
+  * Karma/Jasmine, for my admittedly sparse tests
   * SVG, for leader podium
 
 ## Polling and user display
 It is polling for new data once it reaches the time calculated it will reach the end of the user display scroll. It's
-displaying just 5 at a time for greater visibility from say, across a room or gym. If the service errors or returns
+displaying just 5 at a time for greater visibility from say, across a room or gym. If the endpoint errors or returns
 nothing it retries in a given number of seconds. I'd still like to enhance it to scroll with more smoothness, adding
 some ease transitions perhaps.
 
@@ -66,7 +66,7 @@ be a good idea to show a 'Most Improved' indicator.
 
 In calculating the total reps, based on the workout description:
 'Record total number of reps completed in 5 minutes. Each round has 20 reps.'
-I made the assumption that a user with a test node with value of ["6 (RX)"] would indicate they did 6 * 120 = 720 reps.
+I made the assumption that a user with a test node with value of ["6 (RX)"] would indicate they did 6 * 20 = 120 reps.
 I could be totally offboard but that's what I went with. Kind of suspicious this may be wrong as the leader at the time
 had 100 (RX), thus 1200. Maybe this calculation is correct and he's simply a monster.
 
