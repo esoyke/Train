@@ -11,7 +11,7 @@
                             <h3>{{leaderData.users.length}} Champions in the Making</h3>
                         </div>
                         <div class="scrollerContainer" >
-                            <div ng-repeat="slide in slidesAllUsers track by slide.id" index="slide.id">
+                            <div ng-repeat="slide in slidesAllUsers" class='scroll-animation' >
                                 <table class="usersTable">
                                     <tr>
                                         <td width="100" valign="bottom"><img ng-src="{{slide.image}}" class='allUsers clipCircle'></td>

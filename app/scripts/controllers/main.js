@@ -52,9 +52,9 @@ angular.module('trainApp')
       // Shift user list by both adding and removing a user from the visible 'stack'
       $scope.scrollList = function($scope) {
         var stop = $interval(function($scope) {
-          $rootScope.addPerson();
-          if($rootScope.slidesAllUsers.length>SHOW_NUMBER_OF_USERS)
+          if($rootScope.slidesAllUsers.length>=SHOW_NUMBER_OF_USERS)
             $rootScope.personRemove();
+          $rootScope.addPerson();
         }, LeadersService.ALL_USERS_SCROLL_RATE);
       };
 
@@ -70,3 +70,18 @@ angular.module('trainApp')
 
     }
 ]);
+
+angular.module('trainApp').animation('.scroll-animation', ['LeadersService', '$animateCss', function(LeadersService, $animateCss) {
+  return {
+    enter: function(element, doneFn) {
+      var height = element[0].offsetHeight;
+      return $animateCss(element, {
+        addClass: 'large-text',
+        easing: 'ease-out',
+        from: { height:'0px' },
+        to: { height:height + 'px' },
+        duration: LeadersService.ALL_USERS_SCROLL_RATE/1000 //(scroll rate is in ms, but duration here in in seconds
+      });
+    }
+  }
+}]);

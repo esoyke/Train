@@ -222,14 +222,3 @@ line {
 .textCenter {
     text-align: center;
 }
-
-/* Hide some of the slide carousel's controls */
-span.glyphicon.glyphicon-chevron-left {
-    display: none;
-}
-span.glyphicon.glyphicon-chevron-right {
-    display: none;
-}
-.carousel-indicators {
-    display: none;
-}
