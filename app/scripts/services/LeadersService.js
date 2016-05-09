@@ -5,8 +5,9 @@
  *
  */
 angular.module('trainApp')
-    .factory('LeadersService', function($http, $timeout) {
+    .factory('LeadersService', function($http, $timeout, $interval) {
 
+    var SHOW_NUMBER_OF_USERS  = 5;
     var ALL_USERS_SCROLL_RATE = 1200; // duration between user scrolls in ms
     var POLLING_DEFAULT       = 5000; // default polling rate will be used if nothing was found or endpoint had error
     var REPS_PER_ROUND        = 20;   // multiplier to calculate total reps (assumption based on the data)
@@ -21,13 +22,20 @@ angular.module('trainApp')
       return URL_LEADERS;
     };
 
+    //main data object built from $http call after formatting
     var leaderData = {title: '', instructions: '', users: []};
 
-      /**
-       * calculates total reps for all users based on numeric value of tests node * the workout description of 20 reps
-       * Ex. a user had a tests value of ["6 (RX)"] -> 6 * 20 = 120
-        * @param data
-       */
+    //array of size SHOW_NUMBER_OF_USERS that tracks on-screen users in scroller
+    var slidesAllUsers = [];
+
+    // counter to maintain where we are in the list of users as we scroll through
+    var userId = 0;
+
+    /**
+     * calculates total reps for all users based on numeric value of tests node * the workout description of 20 reps
+     * Ex. a user had a tests value of ["6 (RX)"] -> 6 * 20 = 120
+      * @param data
+     */
     var totalReps = function(data){
       var total = 0;
       _.each(data, function(user){
@@ -108,11 +116,50 @@ angular.module('trainApp')
     };
     poller();
 
-  return {
-    data: leaderData,
-    ALL_USERS_SCROLL_RATE: ALL_USERS_SCROLL_RATE,
-    getRank: getRank,
-    url: url // just used to test
-  };
+
+    // Add a person to the visible stack of scrolling users.
+    var addPerson = function() {
+      if(userId==leaderData.users.length){
+        // hit the end of the list, reset counter to add from beginning again');
+        userId = 0;
+      }
+      console.log('Adding: '+leaderData.users[userId].text);
+      slidesAllUsers.push(leaderData.users[userId]);
+      userId++;
+    };
+
+    // Remove person from the end of the display list
+    var personRemove = function(index) {
+      slidesAllUsers.splice(index, 1);
+    };
+
+    // Shift user list by both adding and removing a user from the visible 'stack'
+    var scrollList = function() {
+      var stop = $interval(function() {
+        if(slidesAllUsers.length>=SHOW_NUMBER_OF_USERS)
+          personRemove();
+        addPerson();
+      }, ALL_USERS_SCROLL_RATE);
+    };
+
+    // Prime the all user slides after a brief pause to account for any service lag
+    (function () {
+      console.log('prime');
+      $timeout(function(){
+        _.times(SHOW_NUMBER_OF_USERS, function() {
+          addPerson();
+        });
+        scrollList();
+      }, 1000);
+    })();
+
+
+    return {
+      data: leaderData,
+      ALL_USERS_SCROLL_RATE: ALL_USERS_SCROLL_RATE,
+      getRank: getRank, //don't need to expose this anymore since refactoring almost everything to here from controller but it's one of my few tests so it stays! ;)
+      url: url, // just used to test
+      slidesAllUsers: slidesAllUsers
+    };
 
 });
