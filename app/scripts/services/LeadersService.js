@@ -123,7 +123,6 @@ angular.module('trainApp')
         // hit the end of the list, reset counter to add from beginning again');
         userId = 0;
       }
-      console.log('Adding: '+leaderData.users[userId].text);
       slidesAllUsers.push(leaderData.users[userId]);
       userId++;
     };
@@ -159,7 +158,7 @@ angular.module('trainApp')
       ALL_USERS_SCROLL_RATE: ALL_USERS_SCROLL_RATE,
       getRank: getRank, //don't need to expose this anymore since refactoring almost everything to here from controller but it's one of my few tests so it stays! ;)
       url: url, // just used to test
-      slidesAllUsers: slidesAllUsers
+      slidesAllUsers: slidesAllUsers  //scrolling list of users
     };
 
 });

@@ -15,7 +15,7 @@
                                 <div ng-repeat="slide in slidesAllUsers" class='scroll-animation' >
                                     <table class="usersTable">
                                         <tr>
-                                            <td width="250" valign="bottom"><img ng-src="{{slide.image}}" class='allUsers clipCircle'></td>
+                                            <td width="200" valign="bottom"><img ng-src="{{slide.image}}" class='allUsers clipCircle'></td>
                                             <td><h3>{{slide.text}} ({{slide.rank}})</h3><h4>{{slide.tests}}</h4></td>
                                         </tr>
                                     </table>
@@ -69,46 +69,6 @@
                     </div>
                 </div>
             </div>
-            <!--<div class='col-lg-7 col-xl-7 col-height col-middle podium' >-->
-                <!--<div class="inside">-->
-                    <!--<div class="content col-middle">-->
-                        <!--<div class="divTitle podiumTitle">-->
-                            <!--<h3>Leaders Podium</h3>-->
-                        <!--</div>-->
-                        <!--<div class="col-xl-6 podiumContainer">-->
-                            <!--&lt;!&ndash; Absolute position 1st, 2nd, 3rd images and aligned texts &ndash;&gt;-->
-                            <!--<img ng-src="{{leaderData.users[0].image}}" class='clipCircle leaderImage user1Image'>-->
-                            <!--<img ng-src="{{leaderData.users[1].image}}" class='clipCircle leaderImage user2Image'>-->
-                            <!--<img ng-src="{{leaderData.users[2].image}}" class='clipCircle leaderImage user3Image'>-->
-                            <!--<div class='leaderText user1Text'><h3>{{leaderData.users[0].text}} ({{leaderData.users[0].rank}})</h3><h4>{{leaderData.users[0].tests}}</h4></div>​-->
-                            <!--<div class='leaderText user2Text'><h3>{{leaderData.users[1].text}} ({{leaderData.users[1].rank}})</h3><h4>{{leaderData.users[1].tests}}</h4></div>​-->
-                            <!--<div class='leaderText user3Text'><h3>{{leaderData.users[2].text}} ({{leaderData.users[2].rank}})</h3><h4>{{leaderData.users[2].tests}}</h4></div>​-->
-
-                            <!--<div style="position: absolute;">-->
-                                <!--&lt;!&ndash; TODO it would look slightly better if I used a polyline with rounded linejoins. Maybe if you hire me.. ;) &ndash;&gt;-->
-                                <!--<svg class='svgPodium'>-->
-                                    <!--<line x1="33" y1="450" x2="33" y2="300" style="stroke:rgb(0,0,0);stroke-width:4" />-->
-                                    <!--<line x1="33" y1="300" x2="280" y2="300" style="stroke:rgb(0,0,0);stroke-width:4" />-->
-                                    <!--<line x1="280" y1="300" x2="280" y2="225" style="stroke:rgb(0,0,0);stroke-width:4" />-->
-                                    <!--<line x1="280" y1="225" x2="530" y2="225" style="stroke:rgb(0,0,0);stroke-width:4" />-->
-                                    <!--<line x1="530" y1="225" x2="530" y2="350" style="stroke:rgb(0,0,0);stroke-width:4" />-->
-                                    <!--<line x1="530" y1="350" x2="780" y2="350" style="stroke:rgb(0,0,0);stroke-width:4" />-->
-                                    <!--<line x1="780" y1="350" x2="780" y2="450" style="stroke:rgb(0,0,0);stroke-width:4" />-->
-                                    <!--<line x1="780" y1="450" x2="33" y2="450" style="stroke:rgb(0,0,0);stroke-width:4" />-->
-                                    <!--Sorry, your browser does not support inline SVG.-->
-                                <!--</svg>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div class="content col-middle summaryContainer">-->
-                        <!--<h4 class='instructions'>{{leaderData.instructions}}</h4>-->
-                        <!--<div class='textCenter'><img class='logo' src="favicon.ico"></div>-->
-                        <!--<h4 class='instructions'>That's a total of <b>{{leaderData.totalReps}}</b> reps people. Keep it up!</h4>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-
-
 
         </div>
     </div>
