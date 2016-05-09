@@ -40,10 +40,6 @@ liberties to speed up development:
   screwy fast on a smaller screen
 
 ## Issues
-Ran into a problem calling add/remove functions within the $interval when scrolling the users, and resorted to using
-$rootScope. While it's working fine at present I usually consider $rootScope to mean I made a scoping mistake. Possibly
-it could be addressed with closures. Being under the gun I opted to note it, move on, and address it later.
-
 Mea culpa: These are just bare bones tests, I need to cover more I know, I know. I wanted to write more but my family
 and I are about to leave for our semi-annual camping trip, where I will be out of Internet world for the next couple
 days, and my clock has run out. Rather than look like I was just sitting on this project forever I wanted to get it to
