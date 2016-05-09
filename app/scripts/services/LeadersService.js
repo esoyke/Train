@@ -7,7 +7,7 @@
 angular.module('trainApp')
     .factory('LeadersService', function($http, $timeout, $interval) {
 
-    var SHOW_NUMBER_OF_USERS  = 5;
+    var SHOW_NUMBER_OF_USERS  = 7;
     var ALL_USERS_SCROLL_RATE = 1200; // duration between user scrolls in ms
     var POLLING_DEFAULT       = 5000; // default polling rate will be used if nothing was found or endpoint had error
     var REPS_PER_ROUND        = 20;   // multiplier to calculate total reps (assumption based on the data)

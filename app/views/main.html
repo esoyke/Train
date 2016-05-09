@@ -6,16 +6,16 @@
         <div class="row-height">
             <div class="col-lg-4 col-xl-4 col-height col-middle">
                 <div class="inside">
-                    <div class="content">
+                    <div class="content col-middle">
                         <div class="divTitle">
                             <h3>{{leaderData.users.length}} Champions in the Making</h3>
                         </div>
                         <div class="centeredWrapper">
-                            <div class="scrollerContainer centeredContent" >
+                            <div id="scrollerContainer" class=" centeredContent" >
                                 <div ng-repeat="slide in slidesAllUsers" class='scroll-animation' >
                                     <table class="usersTable">
                                         <tr>
-                                            <td width="200" valign="bottom"><img ng-src="{{slide.image}}" class='allUsers clipCircle'></td>
+                                            <td width="250" valign="bottom"><img ng-src="{{slide.image}}" class='allUsers clipCircle'></td>
                                             <td><h3>{{slide.text}} ({{slide.rank}})</h3><h4>{{slide.tests}}</h4></td>
                                         </tr>
                                     </table>
@@ -27,7 +27,7 @@
             </div>
 
             <!-- Podium -->
-            <div class='col-lg-7 col-xl-7 col-height col-middle podium' >
+            <div class='col-lg-7 col-xl-7 col-height col-middle' >
                 <div class="inside">
                     <div class="content col-middle">
                         <div class="divTitle ">
