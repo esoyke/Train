@@ -30,14 +30,13 @@ some ease transitions perhaps.
 I tried to maintain a similar feel to the TrainHeroic site, such as fonts and colors, and the circle-clipped user images.
 Also came up with a podium in the spirit of the original site and snuck in your logo.
 
+Created three size breaks which will show 5, 7, or 8 users based on screen height. 
+
 ## Tradeoffs
 As the specs specifically said this would be displayed non-interactively on a large 48" screen, I took the following
 liberties to speed up development:
   * Didn't bother to concat/minify as this would be loaded just once and there was no potential gain
   * Didn't test on anything but Chrome as there probably wouldn't be a need to support multiple browsers
-  * Didn't specify any @media breaks or test on anything other than a large screen
-  * Used absolute positioning for leader podium, both the images and SVG. Looks fine on my full screen but could get
-  screwy fast on a smaller screen
 
 ## Issues
 Mea culpa: These are just bare bones tests, I need to cover more I know, I know. I wanted to write more but my family

@@ -34,9 +34,7 @@ body {
     height: 100%;
     min-height: 100%;
 }
-/*html {*/
-    /*display: table;*/
-/*}*/
+
 body {
     display: table-cell;
     vertical-align: middle;
@@ -132,16 +130,17 @@ body {
     border-radius: 3px;
     text-align: center;
 }
-/*@media screen and (min-height: 900px) {*/
-    /*.scrollerContainer {*/
-        /*min-height: 500px;*/
-        /*height: 500px;*/
-    /*}*/
-/*}*/
+/* two larger breaks showing additional users (will show 5, 7, or 8 users) */
 @media screen and (min-height: 1100px) {
     #scrollerContainer {
         min-height: 950px;
         height: 950px;
+    }
+}
+@media screen and (min-height: 1260px) {
+    #scrollerContainer {
+        min-height: 1085px;
+        height: 1085px;
     }
 }
 .allUsers {
